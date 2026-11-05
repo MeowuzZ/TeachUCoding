@@ -1,0 +1,34 @@
+/* Six chapters in one scroll: clear boundaries without replacing page content. */
+.home-page{overflow-x:clip}.home-page .home-deck-nav{z-index:30;border-bottom:1px solid var(--hw-border);background:var(--hw-surface);box-shadow:0 5px 18px #172c4610;gap:5px;scrollbar-width:thin}
+.home-deck-nav:after{content:'';position:absolute;left:0;bottom:0;height:3px;width:var(--home-reading-progress,0%);background:var(--hw-accent);transition:width .12s linear}
+.home-page .home-deck-nav a{border-radius:8px;transition:background .18s,color .18s,border-color .18s;flex-shrink:0}
+.home-page .home-deck-nav a[aria-current=location]{color:var(--hw-accent);border-color:var(--hw-border);background:var(--hw-soft);font-weight:700}
+.home-nav a[aria-current=location]{color:var(--hw-accent);font-weight:700}
+.home-page [data-home-chapter]{position:relative;isolation:isolate;scroll-margin-top:calc(var(--top) + 105px)}
+.home-page .home-section{padding-top:64px;padding-bottom:78px;border-top:2px solid var(--hw-border)}
+.home-page .home-section:before{content:'';position:absolute;z-index:-1;inset:0 calc(50% - 50vw);background:var(--hw-surface);pointer-events:none}
+.home-page :is(#home-experience,#home-faq):before{background:var(--hw-soft)}
+.home-chapter-marker{display:flex;align-items:center;gap:12px;margin:0 0 30px;color:var(--hw-muted);font-size:12px;font-weight:600;letter-spacing:.08em}
+.home-chapter-marker>span:first-child{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid var(--hw-border);border-top:3px solid var(--hw-accent);border-radius:9px;background:var(--hw-surface);color:var(--hw-accent);font:700 17px ui-monospace,monospace;letter-spacing:0}
+.home-hero>.home-chapter-marker{grid-column:1/-1;margin-bottom:-28px}.home-page .home-hero{row-gap:42px}
+.home-section-heading{position:relative;padding-right:100px}.home-section-heading:after{content:attr(data-section-number);position:absolute;right:0;top:-20px;font:700 90px/1 ui-monospace,monospace;color:var(--hw-accent);opacity:.1;pointer-events:none}
+.home-next-note{margin:42px 0 0;padding-top:18px;border-top:1px solid var(--hw-border);font-size:11px!important;letter-spacing:.05em;color:var(--hw-muted)!important;text-align:right;grid-column:1/-1}
+.home-faq>.home-chapter-marker,.home-faq>.home-next-note{grid-column:1/-1}.home-faq>.home-chapter-marker{margin-bottom:0}.home-final>.home-chapter-marker{justify-content:center}.home-final{margin-top:40px!important}
+@media(max-width:740px){.home-page .home-deck-nav{gap:4px;padding:12px;top:var(--top);min-height:64px}.home-page .home-deck-nav a{padding:8px 11px}.home-page .home-section{padding-top:40px;padding-bottom:48px}.home-chapter-marker{margin-bottom:24px;gap:10px}.home-section-heading{padding-right:52px}.home-section-heading:after{font-size:58px;top:-8px}.home-next-note{margin-top:30px}.home-hero>.home-chapter-marker{margin-bottom:-12px}.home-page .home-hero{row-gap:30px}}
+@media(prefers-reduced-motion:reduce){.home-deck-nav:after,.home-page .home-deck-nav a{transition:none}}
+/* Content gathers toward the reading centre as the user scrolls, in both directions. */
+.home-page .home-deck-nav{display:none!important}
+.home-page [data-home-chapter]{scroll-margin-top:calc(var(--top) + 30px)}
+.home-gather-item{transform-origin:center center;backface-visibility:hidden}
+.home-gather-item:focus-within{transform:none!important;opacity:1!important}
+@media(prefers-reduced-motion:reduce){.home-gather-item{transform:none!important;opacity:1!important;will-change:auto!important}}
+
+.home-gather-item:focus-within{filter:none!important}
+@media(prefers-reduced-motion:reduce){.home-gather-item{filter:none!important}}
+
+.home-scroll-progress{display:none;position:fixed;top:var(--top);left:0;right:0;height:3px;background:var(--hw-border);z-index:40;pointer-events:none}
+.home-page .home-scroll-progress{display:block}
+.home-scroll-progress>span{display:block;width:100%;height:100%;background:var(--hw-accent);transform:scaleX(0);transform-origin:left center}
+
+.home-gather-item:focus-within{clip-path:none!important}
+@media(prefers-reduced-motion:reduce){.home-gather-item{clip-path:none!important}}

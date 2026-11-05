@@ -1,0 +1,13 @@
+services:
+  course:
+    build: .
+    ports:
+      - "127.0.0.1:8876:8876"
+    volumes:
+      - teachucoding-data:/app/data
+    environment:
+      TEACHU_SECURE_COOKIE: "${TEACHU_SECURE_COOKIE:-0}"
+      TEACHU_PUBLIC_ORIGIN: "${TEACHU_PUBLIC_ORIGIN:-}"
+    restart: unless-stopped
+volumes:
+  teachucoding-data:

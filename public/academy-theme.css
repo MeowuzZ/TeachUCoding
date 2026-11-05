@@ -1,0 +1,16 @@
+/* Theme control remains available on every route. */
+.theme-toggle{display:inline-flex!important;align-items:center;justify-content:center;flex-shrink:0;white-space:nowrap;padding:8px 13px;border:1px solid #ccd6e3;border-radius:9px;background:#f4f7fb;color:#253c57;font-size:13px;line-height:1.5;min-height:38px}
+html[data-theme="dark"] .theme-toggle{background:#292f3c;color:#f5d18b;border-color:#657087}
+html[data-theme="dark"] #main :is(p,li,small,label,dt,dd,summary,figcaption){color:#c4cddd!important}
+html[data-theme="dark"] #main :is(h1,h2,h3,h4,h5,strong){color:#f1f4fa!important}
+html[data-theme="dark"] :is(.global-sidebar,.course-outline) :is(a,button,span,small){color:#c6d1e2}
+html[data-theme="dark"] :is(.search-trigger,.header-progress,.top-context,.brand small){color:#bdc9dc!important}
+html[data-theme="dark"] #main :is(article,section,[class*="card"],[class*="panel"],[class*="tile"],[class*="notice"],[class*="banner"]){background-color:#1a1e28;border-color:#424b5e}
+html[data-theme="dark"] #main :is(a,button){color:#a6dfff}
+html[data-theme="dark"] #main :is(input,textarea,select){color:#f1f4fa!important;background:#202633!important}
+html[data-theme="dark"] ::placeholder{color:#aebbd0;opacity:1}
+html[data-theme="dark"] dialog{color:#e9eef7!important;background:#1b202b!important}
+html[data-theme="dark"] dialog :is(p,small,label){color:#c4cddd!important}
+html[data-theme="dark"] :is(.home-course-project,.home-studio,.home-result,.module-gate,.plan-evidence) :is(span,div){color:#c4cddd}
+html[data-theme="dark"] #main .button.primary{color:#181a20!important}
+@media(max-width:740px){.topbar{gap:10px}.theme-toggle{padding:7px 9px;font-size:12px}.home-page .home-study-link{margin-left:auto}.home-page .theme-toggle{margin-left:0}}

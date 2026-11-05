@@ -1,0 +1,22 @@
+/* Unified studio visual system */
+:root{--blue:#71c9f3;--navy:#eef2fa;--ink:#e6eaf2;--muted:#9ba6b8;--line:#303441;--wash:#101117;--light:#212b39;--radius:16px;color-scheme:dark}
+body{background:#101117;color:var(--ink);font-size:15px;line-height:1.8}
+.topbar,.home-page .topbar{background:#14151ded!important;border-bottom:1px solid #343640!important;backdrop-filter:blur(20px)}
+.brand small,.top-context{color:#9da8bb}.brand>span{color:#f4f4f8}
+.global-sidebar,.course-outline{background:#161820!important;border-color:#303441}
+.search-trigger,input,textarea,select,dialog{background:#1d202a!important;color:#e6eaf2!important;border-color:#3b4050!important}
+#main{color:#e6eaf2}.home-page #main{background:radial-gradient(ellipse at 80% 4%,#23304455,transparent 42%),#101117!important}
+.home-hero{padding-top:90px;padding-bottom:80px;gap:64px}.home-hero h1{color:#f5f4f8;font-size:clamp(38px,4.5vw,66px);line-height:1.2;letter-spacing:-.05em}.home-hero h1 em{color:#f5bb53!important;font-style:normal}
+.home-eyebrow{color:#efb954!important;letter-spacing:.18em}.home-lead{font-size:16px!important;line-height:1.95}
+.home-lead,.home-section-heading>p:last-child,.home-course-sub,.home-course-project p,.home-course li,.home-cycle p,.home-workspace-note p,.home-outcome-grid p,.home-faq-list p{color:#aeb7c7!important}
+h1,h2,h3,.home-section-heading h2,.home-course h3,.home-final h2{color:#f2f3f7}
+.home-visual,.home-course,.home-cycle article,.home-workspace-note,.home-final,.syllabus-module,.panel,.card{background:linear-gradient(145deg,#22252f,#171920)!important;border:1px solid #373b48!important;border-radius:16px;box-shadow:0 12px 32px #0003}
+.home-course{position:relative;overflow:hidden;padding:32px!important}.home-course:before{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:#f2b94e}.home-course:nth-child(2):before{background:#72cef3}
+.home-course-project,.home-studio,.home-code,.home-result,.home-studio-bar,.module-gate,.plan-evidence{background:#141720!important;border-color:#343a47!important;color:#dfe7f4}
+.home-section{border-color:#2d313d!important;padding-top:68px;padding-bottom:68px}.home-course-grid{gap:24px}.home-course-meta,.home-facts,.home-release,.home-footer{color:#98a5b9!important}
+.button.primary,.home-study-link{background:#efb84e!important;color:#181a20!important;border-color:#efb84e!important;font-weight:700;box-shadow:0 3px 16px #efb84e20}.button:not(.primary){border:1px solid #465064;background:#242935;color:#e4eaf5}
+a,button{transition:background .18s,border-color .18s,transform .18s}a.button:hover,button.button:hover{transform:translateY(-2px)}
+.home-cycle article{padding:24px}.home-faq-list details,.home-outcome-grid article,.home-footer{border-color:#343947!important}.home-faq-list summary{color:#e6eaf2}.home-final{border-top:3px solid #efb84e!important}.home-footer{padding:32px 0}
+[class*="card"],[class*="panel"],.lesson-content,.lesson-article{color:var(--ink)}
+@media(max-width:740px){.home-hero{padding-top:48px;gap:30px}.home-course{padding:24px!important}.home-section{padding-top:42px;padding-bottom:42px}}
+@media(prefers-reduced-motion:reduce){a,button{transition:none}}

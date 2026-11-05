@@ -1,0 +1,1626 @@
+{
+  "version": "2.0-outline",
+  "date": "2026-10-05",
+  "status": "大纲已完成 · 正文待按新版逐课编写",
+  "learningCycle": [
+    "理解问题",
+    "本地项目作业",
+    "核对结果",
+    "迭代作品"
+  ],
+  "policy": [
+    "新大纲独立编号，不将历史完成记录折算成新版进度。",
+    "每课包含问题、概念、实操、验收与反思；每单元交付一个可检验版本。",
+    "领取项目文件，在本地环境执行与检验；平台负责呈现课文、作业说明与学习记录。",
+    "模拟器只用于界面与失败流程训练；真实模型质量与真实服务部署另行提供验证证据。"
+  ],
+  "courses": {
+    "method": {
+      "title": "笃行 · AI 产品研修",
+      "subtitle": "观察需求，试做方案，用结果修正判断",
+      "tag": "产品判断",
+      "audience": "想把一个小想法做成可体验作品的学习者。具备基础文件操作能力即可开始。",
+      "prerequisite": "准备浏览器、文本编辑工具与一份实践记录；页面基础知识随项目逐步介绍。",
+      "project": "邻里周末 · 活动决策助手",
+      "scenario": "居民在时间、预算与兴趣限制下比较社区活动。系统先给出事实与规则结果，再用 AI 整理有来源的比较理由。",
+      "boundary": "交付可测试的产品原型与评估证据。报名与模型模拟均明确标记；不承诺真实报名、支付、自动发消息或生产级多用户服务。",
+      "outcome": "从一个具体经历提出问题，完成原型和对照试验，解释方案适用范围及继续投入的理由。",
+      "minutes": 75,
+      "projectHours": 2,
+      "weeks": 7,
+      "modules": [
+        {
+          "title": "一次活动选择，究竟难在哪里",
+          "question": "居民为什么看到活动列表后仍然无法决定？",
+          "output": "V0：问题证据包与服务边界",
+          "gate": "用三段观察区分事实、推断与待验证假设；提出一个无需 AI 的对照方案。",
+          "lessons": [
+            {
+              "title": "观察一次真实的选择过程",
+              "concepts": [
+                "行为观察",
+                "事实与推断",
+                "访谈偏差"
+              ],
+              "practice": "用虚构活动卡走查一次找活动流程，再邀请一位自愿体验者口述选择原因；不收集身份信息",
+              "evidence": "一张逐步行为记录，至少三处障碍，各有事实证据",
+              "reflection": "哪条判断只是你自己的猜测？",
+              "id": "A01",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": []
+            },
+            {
+              "title": "把抱怨改写成可验证的问题",
+              "concepts": [
+                "任务场景",
+                "触发条件",
+                "问题频率"
+              ],
+              "practice": "从记录中选一个障碍，写清谁在什么条件下无法完成什么任务",
+              "evidence": "一个问题句、两个反例、一个可观察成功指标",
+              "reflection": "去掉“需要一个智能助手”后，问题还成立吗？",
+              "id": "A02",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A01"
+              ]
+            },
+            {
+              "title": "画出人工服务的完整一轮",
+              "concepts": [
+                "服务流程",
+                "角色分工",
+                "价值闭环"
+              ],
+              "practice": "先不用模型，手工回答“周六下午能参加什么”，记录所需信息",
+              "evidence": "人工流程图及耗时记录，能指出至少一个可简化步骤",
+              "reflection": "人工流程里哪些环节根本不值得自动化？",
+              "id": "A03",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A02"
+              ]
+            },
+            {
+              "title": "确定第一版只解决一件事",
+              "concepts": [
+                "范围取舍",
+                "风险假设",
+                "验收条件"
+              ],
+              "practice": "在报名、推荐、提醒等候选中只保留活动比较；写出拒绝范围",
+              "evidence": "一页范围卡，包含输入、输出、不做项和三条验收条件",
+              "reflection": "如果只剩一天，你会删去什么？",
+              "id": "A04",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A03"
+              ]
+            }
+          ],
+          "id": "AU01",
+          "order": 1,
+          "prerequisite": "起点：完成环境与能力自检",
+          "topicTitle": "问题发现与范围"
+        },
+        {
+          "title": "让信息先成为可操作的界面",
+          "question": "什么样的信息顺序能帮助用户做决定？",
+          "output": "V1：活动比较页面",
+          "gate": "用户能用键盘选择两项活动并说清差别；空列表和窄屏仍能完成任务。",
+          "lessons": [
+            {
+              "title": "把活动资料整理成一份小数据集",
+              "concepts": [
+                "字段与类型",
+                "缺失值",
+                "数据来源"
+              ],
+              "practice": "独立编写六条虚构活动，统一时间、地点、费用和适合人群字段",
+              "evidence": "events.json 与字段说明；缺失值用 null 表示，不凭空补齐",
+              "reflection": "哪些字段应由主办者确认而不能猜？",
+              "id": "A05",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A04"
+              ]
+            },
+            {
+              "title": "用页面结构表达阅读顺序",
+              "concepts": [
+                "HTML 语义",
+                "链接与按钮",
+                "表单标签"
+              ],
+              "practice": "在工作台写活动列表、筛选表单与比较区域的 HTML",
+              "evidence": "index.html；标题层级清楚，输入均有标签，操作无需依赖图片",
+              "reflection": "去掉样式后，页面还能读懂吗？",
+              "id": "A06",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A05"
+              ]
+            },
+            {
+              "title": "用视觉层级减少选择负担",
+              "concepts": [
+                "CSS 选择器",
+                "盒模型",
+                "弹性布局"
+              ],
+              "practice": "实现活动卡与两列比较；在手机宽度调整为单列",
+              "evidence": "style.css；390px 下无横向溢出，费用与时间无需展开查找",
+              "reflection": "你强调的信息是否真的影响选择？",
+              "id": "A07",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A06"
+              ]
+            },
+            {
+              "title": "让点击产生可解释的变化",
+              "concepts": [
+                "变量",
+                "数组",
+                "事件",
+                "界面状态"
+              ],
+              "practice": "用 JavaScript 实现选中、取消和两项上限，并显示空状态",
+              "evidence": "app.js；重复点击不重复添加，清空后可重新选择",
+              "reflection": "一个布尔变量能表示所有页面状态吗？",
+              "id": "A08",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A07"
+              ]
+            }
+          ],
+          "id": "AU02",
+          "order": 2,
+          "prerequisite": "通过 AU01 的单元验收",
+          "topicTitle": "数据与界面原型"
+        },
+        {
+          "title": "先建立规则，再决定哪里需要模型",
+          "question": "推荐理由与活动事实如何分开？",
+          "output": "V2：规则基线与 AI 任务契约",
+          "gate": "用同一组十个问题比较人工、规则与模型方案；模型输出不得创造活动事实。",
+          "lessons": [
+            {
+              "title": "写出不依赖模型的筛选基线",
+              "concepts": [
+                "条件判断",
+                "纯函数",
+                "边界输入"
+              ],
+              "practice": "按预算、日期和关键词筛选六条活动，用表格列出输入与期望结果",
+              "evidence": "filterEvents 函数与至少六个案例，包含零预算和无匹配",
+              "reflection": "规则已经解决了多少需求？",
+              "id": "A09",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A08"
+              ]
+            },
+            {
+              "title": "设计模型只负责的那一小步",
+              "concepts": [
+                "任务分解",
+                "输入输出契约",
+                "结构化结果"
+              ],
+              "practice": "让模型只整理比较理由，活动 ID 和事实来自数据集；先用明确标记的模拟结果接界面",
+              "evidence": "任务契约及 JSON 示例；缺字段或陌生活动 ID 被拒绝",
+              "reflection": "模型失败时，哪些基本操作应继续可用？",
+              "id": "A10",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A09"
+              ]
+            },
+            {
+              "title": "把提示写成可重复的实验",
+              "concepts": [
+                "上下文",
+                "约束",
+                "对照变量"
+              ],
+              "practice": "固定活动和问题，仅改变提示中的一个约束，手工记录真实模型输出；无账号时仅完成实验设计",
+              "evidence": "两个提示版本、原始输出和差异记录，模拟数据与真实结果明确区分",
+              "reflection": "结果变好是否可能只是随机波动？",
+              "id": "A11",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A10"
+              ]
+            },
+            {
+              "title": "把“不知道”设计为正常回答",
+              "concepts": [
+                "证据引用",
+                "不确定性",
+                "回退策略"
+              ],
+              "practice": "加入费用缺失、时间冲突、无匹配三种情况，要求回答引用活动 ID",
+              "evidence": "失败样例集；无来源结论被标记，页面可退回规则列表",
+              "reflection": "你是否为了让答案完整而补写了事实？",
+              "id": "A12",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A11"
+              ]
+            }
+          ],
+          "id": "AU03",
+          "order": 3,
+          "prerequisite": "通过 AU02 的单元验收",
+          "topicTitle": "规则、提示与模型边界"
+        },
+        {
+          "title": "让一个人真正走完体验",
+          "question": "用户能否理解系统正在做什么并纠正它？",
+          "output": "V3：可演示的交互原型",
+          "gate": "另一位体验者能独立完成选择、比较与修改偏好；模拟报名明确不产生真实预约。",
+          "lessons": [
+            {
+              "title": "把正常流程和中断流程一起画出来",
+              "concepts": [
+                "状态机",
+                "加载态",
+                "重试",
+                "取消"
+              ],
+              "practice": "画从选择偏好到查看比较结果的状态图，补齐超时和用户修改输入",
+              "evidence": "状态图及每条转移触发条件，没有无法退出的加载状态",
+              "reflection": "返回上一步后，哪些输入应该保留？",
+              "id": "A13",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A12"
+              ]
+            },
+            {
+              "title": "连接数据、规则与结果卡",
+              "concepts": [
+                "模块职责",
+                "输入校验",
+                "渲染函数"
+              ],
+              "practice": "把活动数据、筛选逻辑和结果显示分成三个文件，接入模拟适配器",
+              "evidence": "可运行原型；换一组活动数据无需改渲染函数",
+              "reflection": "哪个文件同时做了太多事情？",
+              "id": "A14",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A13"
+              ]
+            },
+            {
+              "title": "用可撤回操作建立信任",
+              "concepts": [
+                "草稿保存",
+                "恢复",
+                "确认动作"
+              ],
+              "practice": "保存比较清单到本地，增加清空确认与恢复说明；不保存个人联系方式",
+              "evidence": "刷新后清单可恢复，存储不可用时出现提示，演示报名带明确标签",
+              "reflection": "用户可能把哪个演示动作误认为真实服务？",
+              "id": "A15",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A14"
+              ]
+            },
+            {
+              "title": "做一次观察式可用性测试",
+              "concepts": [
+                "任务测试",
+                "观察记录",
+                "问题优先级"
+              ],
+              "practice": "给体验者两个任务，不现场指导；按阻碍程度选两个问题修复",
+              "evidence": "测试记录、修复前后对照和未解决问题清单",
+              "reflection": "你的解释是否掩盖了界面的缺陷？",
+              "id": "A16",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A15"
+              ]
+            }
+          ],
+          "id": "AU04",
+          "order": 4,
+          "prerequisite": "通过 AU03 的单元验收",
+          "topicTitle": "交互状态与可用性"
+        },
+        {
+          "title": "用证据判断 AI 是否值得上线",
+          "question": "好看的回答是否也准确、稳定且有用？",
+          "output": "V4：质量评估与上线决策",
+          "gate": "用固定题集给出上线、限范围试用或暂缓的结论，并写清判断依据。",
+          "lessons": [
+            {
+              "title": "建立不会临时改题的评测集",
+              "concepts": [
+                "测试集",
+                "覆盖范围",
+                "预期证据"
+              ],
+              "practice": "编写十二个问题，覆盖匹配、无答案、缺字段、矛盾和诱导编造",
+              "evidence": "冻结题集与评分表，标明每题允许引用的活动记录",
+              "reflection": "你的题集是否只包含容易成功的问题？",
+              "id": "A17",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A16"
+              ]
+            },
+            {
+              "title": "分别测准确性和帮助程度",
+              "concepts": [
+                "事实一致性",
+                "任务成功率",
+                "人工评分"
+              ],
+              "practice": "对规则方案与模型方案盲评，分别记录事实错误与选择耗时",
+              "evidence": "同题对照表，保留失败原文，不用单一“满意度”代替全部指标",
+              "reflection": "更自然的表达是否掩盖了更差的事实质量？",
+              "id": "A18",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A17"
+              ]
+            },
+            {
+              "title": "检查成本、等待和数据边界",
+              "concepts": [
+                "调用预算",
+                "最小数据",
+                "超时策略"
+              ],
+              "practice": "估算不同访问量的调用次数；设计只发送必要活动字段的请求样例",
+              "evidence": "预算计算表、请求字段清单、超时回退演示；不将密钥放入页面",
+              "reflection": "哪类输入不应该发给外部模型？",
+              "id": "A19",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A18"
+              ]
+            },
+            {
+              "title": "做出有条件的发布决定",
+              "concepts": [
+                "发布门槛",
+                "风险缓解",
+                "退出条件"
+              ],
+              "practice": "设定事实错误、等待时间、可用性三类门槛，用现有证据做决策",
+              "evidence": "一页发布决策书，包含未达项、限制范围与停止试用条件",
+              "reflection": "什么新证据会让你改变决定？",
+              "id": "A20",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A19"
+              ]
+            }
+          ],
+          "id": "AU05",
+          "order": 5,
+          "prerequisite": "通过 AU04 的单元验收",
+          "topicTitle": "质量评测与发布决策"
+        },
+        {
+          "title": "交付一个别人能接手的产品实验",
+          "question": "没有作者在场，这件作品还能被理解和验证吗？",
+          "output": "V5：可复现演示包与下一轮实验",
+          "gate": "另一人按说明独立打开原型、复现一条失败并运行验收；完成陌生场景迁移。",
+          "lessons": [
+            {
+              "title": "把作品装进可复现的交付包",
+              "concepts": [
+                "版本说明",
+                "启动文档",
+                "样例数据"
+              ],
+              "practice": "整理入口文件、虚构数据、功能边界和验收清单；标清模拟能力",
+              "evidence": "一个可离线打开的原型包及 README，交付包不含密钥与个人资料",
+              "reflection": "接手者第一分钟会遇到什么障碍？",
+              "id": "A21",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A20"
+              ]
+            },
+            {
+              "title": "发布只承诺已实现的能力",
+              "concepts": [
+                "静态发布",
+                "配置边界",
+                "版本回退"
+              ],
+              "practice": "按发布清单上传静态原型，核对链接、图片、窄屏和版本标识",
+              "evidence": "发布检查表与回退包；页面明确模型结果是否为模拟",
+              "reflection": "演示链接中的承诺是否超出了实际实现？",
+              "id": "A22",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A21"
+              ]
+            },
+            {
+              "title": "让反馈决定下一次改动",
+              "concepts": [
+                "反馈分类",
+                "假设修订",
+                "实验排序"
+              ],
+              "practice": "将三条测试反馈转成可验证假设，只选择一个下一轮实验",
+              "evidence": "假设—改动—指标—停止条件四列表，不将所有建议变成功能",
+              "reflection": "哪条反馈可能只代表一个人的偏好？",
+              "id": "A23",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A22"
+              ]
+            },
+            {
+              "title": "把方法迁移到另一种服务",
+              "concepts": [
+                "能力迁移",
+                "约束变化",
+                "答辩"
+              ],
+              "practice": "独立将活动比较改成社区课程选择，改变两个约束并说明取舍",
+              "evidence": "迁移原型、证据包与五分钟说明，能解释一个失败和一个删减",
+              "reflection": "哪些设计是通用方法，哪些依赖原场景？",
+              "id": "A24",
+              "minutes": 75,
+              "status": "outline",
+              "dependsOn": [
+                "A23"
+              ]
+            }
+          ],
+          "id": "AU06",
+          "order": 6,
+          "prerequisite": "通过 AU05 的单元验收",
+          "topicTitle": "交付、反馈与迁移"
+        }
+      ],
+      "excluded": [
+        "模型训练与微调",
+        "企业权限系统",
+        "复杂 Agent 编排",
+        "支付与商业运营"
+      ],
+      "bridge": "若需要把原型做成多人服务，进入致用 · 全栈工程研修；已掌握的网页内容可通过诊断任务申请跳过，但须提交代码与边界测试。",
+      "lessonCount": 24,
+      "totalHours": 42.0,
+      "chapters": [
+        {
+          "id": "method-chapter-1",
+          "title": "产品发现与原型设计",
+          "modules": [
+            "AU01",
+            "AU02"
+          ]
+        },
+        {
+          "id": "method-chapter-2",
+          "title": "AI 能力与交互实现",
+          "modules": [
+            "AU03",
+            "AU04"
+          ]
+        },
+        {
+          "id": "method-chapter-3",
+          "title": "产品评测与交付",
+          "modules": [
+            "AU05",
+            "AU06"
+          ]
+        }
+      ]
+    },
+    "engineering": {
+      "title": "致用 · 全栈工程研修",
+      "subtitle": "围绕日常业务，逐步接通程序、数据与服务",
+      "tag": "工程实现",
+      "audience": "愿意在本地搭建环境、编写代码并追踪错误的学习者；起步阶段从基本结构讲起。",
+      "prerequisite": "准备可安装开发工具的电脑，按章节说明核对运行环境；遇到报错时保留输入和完整输出。",
+      "project": "共用实验室 · 器材预约系统",
+      "scenario": "在一个共享场地内，成员查询器材、预约固定时段并取消自己的预约；管理员维护器材可用状态。",
+      "boundary": "固定时段、单场地、有限角色的教学系统。主线不做微服务、支付、跨时区、任意时长预约或大模型训练。",
+      "outcome": "把界面、业务规则和数据存储连成可以复查的工程，说明边界、验证过程和交接方式。",
+      "minutes": 90,
+      "projectHours": 3,
+      "weeks": 18,
+      "modules": [
+        {
+          "title": "先看见一次预约的数据流",
+          "question": "点击预约后，信息经过哪些位置？",
+          "output": "R0：系统边界与本地页面",
+          "gate": "能从用户操作追踪到文件、请求和数据；明确本机演示与多人服务的区别。",
+          "lessons": [
+            {
+              "title": "追踪浏览器里的一次操作",
+              "concepts": [
+                "客户端与服务端",
+                "HTTP",
+                "文件与进程"
+              ],
+              "practice": "画出查看器材和提交预约的两条数据路径，标出尚未实现的节点",
+              "evidence": "一张数据流图，说明本地文件打不开接口的原因",
+              "reflection": "浏览器中看到成功文字是否代表数据已经保存？",
+              "id": "B01",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": []
+            },
+            {
+              "title": "把开发环境变成可复现步骤",
+              "concepts": [
+                "目录",
+                "终端",
+                "编辑器",
+                "版本检查"
+              ],
+              "practice": "建立项目目录并通过本地静态服务打开一个页面，记录实际命令",
+              "evidence": "README 包含入口、停止方法和端口冲突处理",
+              "reflection": "别人按你的命令能找到相同的文件吗？",
+              "id": "B02",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B01"
+              ]
+            },
+            {
+              "title": "定义预约系统的第一份契约",
+              "concepts": [
+                "用户故事",
+                "业务规则",
+                "状态边界"
+              ],
+              "practice": "限定单场地、固定时段与虚构用户；定义可用、已预约、已取消",
+              "evidence": "三条用户故事、五条规则和明确的不做项",
+              "reflection": "预约冲突由页面还是服务端最终决定？",
+              "id": "B03",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B02"
+              ]
+            },
+            {
+              "title": "用 Git 留下可回退的起点",
+              "concepts": [
+                "提交",
+                "差异",
+                "忽略文件",
+                "恢复"
+              ],
+              "practice": "提交初始页面，制造一个可逆样式错误，再恢复该文件",
+              "evidence": "两次提交及差异说明，不包含构建缓存或个人配置",
+              "reflection": "恢复一个文件与撤销整次提交有什么区别？",
+              "id": "B04",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B03"
+              ]
+            }
+          ],
+          "id": "BU01",
+          "order": 1,
+          "prerequisite": "起点：完成环境与能力自检",
+          "topicTitle": "环境、契约与版本管理"
+        },
+        {
+          "title": "把预约表画成真正的网页",
+          "question": "如何让不同设备和不同操作方式都能完成填写？",
+          "output": "R1：静态预约界面",
+          "gate": "能用键盘填写表单；图片加载失败、空列表、窄屏均有可读布局。",
+          "lessons": [
+            {
+              "title": "用 HTML 表达器材和时段",
+              "concepts": [
+                "语义标签",
+                "列表",
+                "表格",
+                "路径"
+              ],
+              "practice": "实现器材详情、时段表与图片引用，使用自行制作的 SVG 占位图",
+              "evidence": "index.html；表头对应正确，图片有替代文字",
+              "reflection": "表格数据改用卡片是否仍保留了关系？",
+              "id": "B05",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B04"
+              ]
+            },
+            {
+              "title": "把表单输入与业务含义对齐",
+              "concepts": [
+                "label",
+                "输入类型",
+                "原生校验"
+              ],
+              "practice": "添加器材、日期、时段表单，禁止缺项提交并保留输入",
+              "evidence": "可键盘操作的表单，错误提示指向具体字段",
+              "reflection": "原生校验能防止服务端收到恶意输入吗？",
+              "id": "B06",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B05"
+              ]
+            },
+            {
+              "title": "用 CSS 建立可维护的样式",
+              "concepts": [
+                "层叠",
+                "选择器",
+                "盒模型",
+                "变量"
+              ],
+              "practice": "提取颜色与间距变量，实现默认、选中和不可用状态",
+              "evidence": "style.css；状态除颜色外还有文字或图标提示",
+              "reflection": "增加新器材卡时为什么不应复制整份样式？",
+              "id": "B07",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B06"
+              ]
+            },
+            {
+              "title": "让布局响应可用空间",
+              "concepts": [
+                "Flex",
+                "Grid",
+                "媒体查询",
+                "溢出处理"
+              ],
+              "practice": "将桌面双栏改为手机单栏，测试长名称和图片缺失",
+              "evidence": "390px 与桌面布局证据，页面整体无横向滚动",
+              "reflection": "断点应该由设备名称还是内容需求决定？",
+              "id": "B08",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B07"
+              ]
+            }
+          ],
+          "id": "BU02",
+          "order": 2,
+          "prerequisite": "通过 BU01 的单元验收",
+          "topicTitle": "HTML 与 CSS"
+        },
+        {
+          "title": "用 JavaScript 管理一次交互",
+          "question": "界面变化与数据变化如何保持一致？",
+          "output": "R2：内存中的预约样机",
+          "gate": "重复点击不生成重复记录；空输入、取消、切换器材有明确结果。",
+          "lessons": [
+            {
+              "title": "把器材资料写成值与集合",
+              "concepts": [
+                "变量",
+                "类型",
+                "对象",
+                "数组"
+              ],
+              "practice": "定义器材和时段数据，编写按 ID 查找器材的函数",
+              "evidence": "data.js 与三个查找用例，包括不存在的 ID",
+              "reflection": "显示名称为什么不适合作为唯一标识？",
+              "id": "B09",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B08"
+              ]
+            },
+            {
+              "title": "用条件和循环表达可用时段",
+              "concepts": [
+                "条件",
+                "循环",
+                "函数",
+                "返回值"
+              ],
+              "practice": "编写可用时段过滤，禁止结束时间早于开始时间",
+              "evidence": "纯函数与边界输入表，不依赖 DOM 才能运行",
+              "reflection": "空数组与错误输入应返回相同结果吗？",
+              "id": "B10",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B09"
+              ]
+            },
+            {
+              "title": "连接事件与页面状态",
+              "concepts": [
+                "事件",
+                "DOM",
+                "单一状态来源"
+              ],
+              "practice": "监听表单提交和取消，统一通过状态对象渲染列表",
+              "evidence": "app.js；切换器材后不会留下上一个器材的选中状态",
+              "reflection": "同时修改 DOM 和数据会造成什么分歧？",
+              "id": "B11",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B10"
+              ]
+            },
+            {
+              "title": "拆分模块并复现一个错误",
+              "concepts": [
+                "ES 模块",
+                "作用域",
+                "调试",
+                "错误栈"
+              ],
+              "practice": "分离数据、规则和视图，复现重复预约后写出最小修复",
+              "evidence": "三个职责清楚的模块及错误复现步骤",
+              "reflection": "你修复的是根因还是仅隐藏了重复按钮？",
+              "id": "B12",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B11"
+              ]
+            }
+          ],
+          "id": "BU03",
+          "order": 3,
+          "prerequisite": "通过 BU02 的单元验收",
+          "topicTitle": "JavaScript 与 DOM"
+        },
+        {
+          "title": "让浏览器面对刷新与失败",
+          "question": "网络不可靠时，用户的输入如何被保护？",
+          "output": "R3：带本地草稿的接口样机",
+          "gate": "刷新可恢复草稿；坏数据不会卡死页面；超时、失败和重试可以演示。",
+          "lessons": [
+            {
+              "title": "保存草稿而不是伪造服务端记录",
+              "concepts": [
+                "JSON",
+                "序列化",
+                "本地存储",
+                "版本字段"
+              ],
+              "practice": "保存未提交表单，添加草稿版本与清除入口",
+              "evidence": "刷新恢复有效草稿，损坏 JSON 提示后可重新填写",
+              "reflection": "本地草稿为什么不能当作多人预约结果？",
+              "id": "B13",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B12"
+              ]
+            },
+            {
+              "title": "用 Promise 理解等待",
+              "concepts": [
+                "异步",
+                "Promise",
+                "async/await",
+                "异常"
+              ],
+              "practice": "编写延迟返回的模拟接口，支持成功、失败和超时三种结果",
+              "evidence": "每种情况有明确 UI 状态，失败后保留输入",
+              "reflection": "loading 标志放在哪个位置才能一定复位？",
+              "id": "B14",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B13"
+              ]
+            },
+            {
+              "title": "让请求参数和响应有约定",
+              "concepts": [
+                "fetch",
+                "HTTP 状态",
+                "JSON 契约"
+              ],
+              "practice": "定义查询时段与创建预约的请求响应，接本地模拟服务",
+              "evidence": "接口示例覆盖成功、参数错误和冲突，模拟入口有标签",
+              "reflection": "HTTP 200 与业务成功是同一回事吗？",
+              "id": "B15",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B14"
+              ]
+            },
+            {
+              "title": "防止旧响应覆盖新选择",
+              "concepts": [
+                "竞态",
+                "请求标识",
+                "取消请求"
+              ],
+              "practice": "快速切换两个器材，用延迟制造响应顺序颠倒并修复",
+              "evidence": "可复现竞态和修复证据，最终显示最后一次选择",
+              "reflection": "禁用全部按钮是否是唯一解法？",
+              "id": "B16",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B15"
+              ]
+            }
+          ],
+          "id": "BU04",
+          "order": 4,
+          "prerequisite": "通过 BU03 的单元验收",
+          "topicTitle": "异步请求与本地存储"
+        },
+        {
+          "title": "用 Java 写出独立的业务规则",
+          "question": "去掉网页后，预约规则还能运行吗？",
+          "output": "R4：命令行预约规则程序",
+          "gate": "程序能处理边界输入并输出明确结果；业务函数不依赖页面或数据库。",
+          "lessons": [
+            {
+              "title": "从源文件走到运行中的程序",
+              "concepts": [
+                "JDK",
+                "编译",
+                "main",
+                "类型"
+              ],
+              "practice": "创建并运行 BookingDemo.java，解释源文件、字节码和进程",
+              "evidence": "编译与运行记录，修复一次文件名与类名不匹配",
+              "reflection": "Java 与浏览器 JavaScript 的运行环境有哪些不同？",
+              "id": "B17",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B16"
+              ]
+            },
+            {
+              "title": "用类型和分支约束预约输入",
+              "concepts": [
+                "基本类型",
+                "字符串",
+                "条件",
+                "循环"
+              ],
+              "practice": "校验器材编号与时段编号，拒绝空白和越界输入",
+              "evidence": "校验函数覆盖最小值、最大值及两个非法输入",
+              "reflection": "把所有输入当字符串会在哪一步失去约束？",
+              "id": "B18",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B17"
+              ]
+            },
+            {
+              "title": "把规则拆成可组合的方法",
+              "concepts": [
+                "参数",
+                "返回值",
+                "局部变量",
+                "方法职责"
+              ],
+              "practice": "提取时段合法性与重叠判断，逐个调用验证",
+              "evidence": "方法各有明确输入输出，重复调用结果一致",
+              "reflection": "方法应该返回 false 还是说明失败原因？",
+              "id": "B19",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B18"
+              ]
+            },
+            {
+              "title": "把失败案例变成回归用例",
+              "concepts": [
+                "断言",
+                "边界划分",
+                "确定性测试"
+              ],
+              "practice": "用简单测试入口验证相邻时段不冲突、重叠时段冲突",
+              "evidence": "至少八个案例，包含跨边界输入及明确预期",
+              "reflection": "只测“正常预约成功”漏掉了什么？",
+              "id": "B20",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B19"
+              ]
+            }
+          ],
+          "id": "BU05",
+          "order": 5,
+          "prerequisite": "通过 BU04 的单元验收",
+          "topicTitle": "基础语法与业务方法"
+        },
+        {
+          "title": "用对象组织逐渐复杂的规则",
+          "question": "器材、预约和仓库各应该负责什么？",
+          "output": "R5：可替换存储的业务层",
+          "gate": "更换内存仓库不会改动规则；取消操作重复执行不会破坏记录。",
+          "lessons": [
+            {
+              "title": "识别实体、值与身份",
+              "concepts": [
+                "类",
+                "构造器",
+                "封装",
+                "枚举"
+              ],
+              "practice": "设计 Equipment、Booking 与 BookingStatus，约束非法初始状态",
+              "evidence": "模型说明和对象创建用例，状态不使用任意字符串",
+              "reflection": "同名器材是否是同一个实体？",
+              "id": "B21",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B20"
+              ]
+            },
+            {
+              "title": "用集合表达查询与索引",
+              "concepts": [
+                "List",
+                "Map",
+                "泛型",
+                "相等性"
+              ],
+              "practice": "在内存保存预约，按 ID 查询并按器材筛选",
+              "evidence": "查询结果正确，不暴露可随意修改的内部集合",
+              "reflection": "选择 Map 解决了什么，又付出了什么？",
+              "id": "B22",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B21"
+              ]
+            },
+            {
+              "title": "用接口隔开规则与存储",
+              "concepts": [
+                "接口",
+                "依赖",
+                "组合",
+                "职责边界"
+              ],
+              "practice": "定义 BookingRepository，实现内存版本并注入业务服务",
+              "evidence": "业务服务不创建具体仓库，可以替换测试实现",
+              "reflection": "接口是否只是给每个类机械增加一个名字？",
+              "id": "B23",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B22"
+              ]
+            },
+            {
+              "title": "让异常携带可处理的意义",
+              "concepts": [
+                "异常",
+                "资源关闭",
+                "状态转移",
+                "幂等"
+              ],
+              "practice": "区分不存在、冲突和内部错误，编写取消预约规则",
+              "evidence": "第二次取消有明确结果，错误未被空 catch 吞掉",
+              "reflection": "哪些失败是正常业务结果，哪些需要报警？",
+              "id": "B24",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B23"
+              ]
+            }
+          ],
+          "id": "BU06",
+          "order": 6,
+          "prerequisite": "通过 BU05 的单元验收",
+          "topicTitle": "面向对象、集合与异常"
+        },
+        {
+          "title": "把预约规则落到数据库",
+          "question": "服务重启后数据如何保留，又如何保持一致？",
+          "output": "R6：关系模型与事务练习",
+          "gate": "能从空库重建表和样例数据；异常回滚不会留下半条业务记录。",
+          "lessons": [
+            {
+              "title": "从业务规则推导表结构",
+              "concepts": [
+                "主键",
+                "外键",
+                "约束",
+                "规范化"
+              ],
+              "practice": "绘制器材、用户、固定时段和预约关系，写字段约束",
+              "evidence": "关系图、建表 SQL 和三条约束的业务解释",
+              "reflection": "哪些一致性不应只靠页面检查？",
+              "id": "B25",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B24"
+              ]
+            },
+            {
+              "title": "写出能解释结果的查询",
+              "concepts": [
+                "SELECT",
+                "JOIN",
+                "过滤",
+                "聚合"
+              ],
+              "practice": "查询器材预约列表和每个器材的使用次数",
+              "evidence": "sql 文件与预期结果，包含没有预约的器材",
+              "reflection": "内连接为什么可能漏掉零次预约的器材？",
+              "id": "B26",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B25"
+              ]
+            },
+            {
+              "title": "用 JDBC 执行参数化操作",
+              "concepts": [
+                "连接",
+                "预编译",
+                "映射",
+                "资源释放"
+              ],
+              "practice": "将内存仓库替换为 JDBC，实现新增和按 ID 查询",
+              "evidence": "参数化 SQL，连接正确关闭，原业务测试可复用",
+              "reflection": "拼接用户输入为什么会改变查询含义？",
+              "id": "B27",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B26"
+              ]
+            },
+            {
+              "title": "用事务保护一个完整动作",
+              "concepts": [
+                "事务",
+                "回滚",
+                "唯一约束",
+                "隔离"
+              ],
+              "practice": "用占用表唯一键保护固定时段，制造预约写入失败",
+              "evidence": "失败后预约与占用均回滚，冲突不会留下双重占用",
+              "reflection": "先查后写为什么仍可能产生竞争？",
+              "id": "B28",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B27"
+              ]
+            }
+          ],
+          "id": "BU07",
+          "order": 7,
+          "prerequisite": "通过 BU06 的单元验收",
+          "topicTitle": "SQL、JDBC 与事务"
+        },
+        {
+          "title": "把业务能力变成 HTTP 接口",
+          "question": "怎样让不同客户端可靠地调用预约规则？",
+          "output": "R7：Spring Boot 服务",
+          "gate": "通过接口完成查询、创建、取消；非法输入与冲突返回稳定错误格式。",
+          "lessons": [
+            {
+              "title": "认识构建与依赖的边界",
+              "concepts": [
+                "Maven",
+                "目录约定",
+                "依赖注入",
+                "配置"
+              ],
+              "practice": "建立最小 Spring Boot 工程，将已有业务服务接入容器",
+              "evidence": "工程可从命令行测试启动，环境配置不写死在业务类",
+              "reflection": "框架替你完成了什么，哪些规则仍由你负责？",
+              "id": "B29",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B28"
+              ]
+            },
+            {
+              "title": "让路由对应业务动作",
+              "concepts": [
+                "Controller",
+                "DTO",
+                "HTTP 方法",
+                "状态码"
+              ],
+              "practice": "实现时段查询与预约创建路由，避免直接暴露数据库实体",
+              "evidence": "接口契约和可重放请求，成功响应含预约 ID",
+              "reflection": "DTO 为什么不一定与数据表一一对应？",
+              "id": "B30",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B29"
+              ]
+            },
+            {
+              "title": "统一校验和错误响应",
+              "concepts": [
+                "字段校验",
+                "异常映射",
+                "错误码"
+              ],
+              "practice": "为缺参、记录不存在和预约冲突建立错误响应",
+              "evidence": "三类失败均可稳定复现，响应不暴露内部堆栈",
+              "reflection": "前端应该依赖错误提示文字还是稳定错误码？",
+              "id": "B31",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B30"
+              ]
+            },
+            {
+              "title": "验证真实请求穿过所有层",
+              "concepts": [
+                "集成测试",
+                "测试数据",
+                "配置隔离"
+              ],
+              "practice": "用独立测试数据库完成创建—查询—取消的接口测试",
+              "evidence": "测试可重复运行且不依赖执行顺序，不修改开发数据",
+              "reflection": "单个方法通过测试为什么不代表整条接口可用？",
+              "id": "B32",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B31"
+              ]
+            }
+          ],
+          "id": "BU08",
+          "order": 8,
+          "prerequisite": "通过 BU07 的单元验收",
+          "topicTitle": "构建、接口与校验"
+        },
+        {
+          "title": "把已理解的页面迁移到 Vue",
+          "question": "框架怎样减少重复，而不是隐藏基本原理？",
+          "output": "R8：Vue 组件化客户端",
+          "gate": "保留原页面行为，组件边界清楚；直接打开路由和刷新均能恢复页面。",
+          "lessons": [
+            {
+              "title": "从手动渲染走向响应式界面",
+              "concepts": [
+                "Vue 模板",
+                "ref",
+                "computed",
+                "单向数据流"
+              ],
+              "practice": "将器材列表迁为响应式组件，用计算属性筛选",
+              "evidence": "不直接操作 DOM，筛选后数据与页面一致",
+              "reflection": "计算属性和事件处理分别解决什么问题？",
+              "id": "B33",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B32"
+              ]
+            },
+            {
+              "title": "把可复用组件的边界写出来",
+              "concepts": [
+                "props",
+                "emits",
+                "插槽",
+                "组件职责"
+              ],
+              "practice": "拆分 EquipmentCard、SlotPicker 和 BookingForm",
+              "evidence": "父组件管理选择，子组件通过事件上报，空态可复用",
+              "reflection": "组件拆得更小是否一定更好？",
+              "id": "B34",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B33"
+              ]
+            },
+            {
+              "title": "用路由组织用户任务",
+              "concepts": [
+                "路由参数",
+                "导航",
+                "页面状态"
+              ],
+              "practice": "建立器材列表、详情与我的预约页面，处理无效 ID",
+              "evidence": "复制详情链接可直接进入，未知路径有返回入口",
+              "reflection": "哪些状态属于 URL，哪些只属于本次输入？",
+              "id": "B35",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B34"
+              ]
+            },
+            {
+              "title": "统一请求与服务端错误处理",
+              "concepts": [
+                "请求封装",
+                "表单状态",
+                "错误映射"
+              ],
+              "practice": "接入 R7 接口，展示字段错误、冲突与网络失败",
+              "evidence": "成功与失败均可演示，提交后不依赖手动刷新",
+              "reflection": "每个组件各写一份请求逻辑会有什么代价？",
+              "id": "B36",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B35"
+              ]
+            }
+          ],
+          "id": "BU09",
+          "order": 9,
+          "prerequisite": "通过 BU08 的单元验收",
+          "topicTitle": "组件、路由与请求"
+        },
+        {
+          "title": "让两个人同时使用仍然正确",
+          "question": "权限与并发问题该由谁承担？",
+          "output": "R9：带身份边界的多人内测版",
+          "gate": "用户无法查看或取消他人预约；同一固定时段并发创建最多一个成功。",
+          "lessons": [
+            {
+              "title": "用身份建立记录归属",
+              "concepts": [
+                "认证",
+                "授权",
+                "会话",
+                "服务端身份"
+              ],
+              "practice": "接入课程提供并审校的认证组件，服务端从会话取用户 ID",
+              "evidence": "无登录请求被拒绝，修改客户端 userId 不会改变归属",
+              "reflection": "登录成功是否意味着有权操作任何记录？",
+              "id": "B37",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B36"
+              ]
+            },
+            {
+              "title": "按操作检查权限",
+              "concepts": [
+                "资源授权",
+                "角色",
+                "最小权限"
+              ],
+              "practice": "实现本人取消与管理员停用器材，补直接调用接口的测试",
+              "evidence": "越权返回拒绝且数据库无变化，不仅隐藏按钮",
+              "reflection": "界面不显示按钮为什么仍不能保护接口？",
+              "id": "B38",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B37"
+              ]
+            },
+            {
+              "title": "用约束处理并发冲突",
+              "concepts": [
+                "唯一占用",
+                "事务边界",
+                "并发测试"
+              ],
+              "practice": "对同一时段并发发送两个预约请求，处理约束冲突",
+              "evidence": "一个成功、一个冲突，数据中仅一个有效占用",
+              "reflection": "哪条数据库约束最终保证了正确性？",
+              "id": "B39",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B38"
+              ]
+            },
+            {
+              "title": "联调失败流程并保留证据",
+              "concepts": [
+                "关联标识",
+                "日志",
+                "复现步骤"
+              ],
+              "practice": "演练登录过期、服务器重启和重复提交，串联前后端日志",
+              "evidence": "三份故障记录，含输入、请求、服务端结果和修复",
+              "reflection": "日志是否写入了不必要的用户信息？",
+              "id": "B40",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B39"
+              ]
+            }
+          ],
+          "id": "BU10",
+          "order": 10,
+          "prerequisite": "通过 BU09 的单元验收",
+          "topicTitle": "身份、权限与并发"
+        },
+        {
+          "title": "让每次修改都有可靠的反馈",
+          "question": "如何知道一个小改动没有破坏整个系统？",
+          "output": "R10：可回归验证的候选版本",
+          "gate": "全新环境可运行测试；加入一条业务规则后能说明测试和实现的变动。",
+          "lessons": [
+            {
+              "title": "让重复核对由程序完成",
+              "concepts": [
+                "JUnit",
+                "测试替身",
+                "测试层次"
+              ],
+              "practice": "为器材借用安排可重复执行的检查：合法请求应保存，超量请求应拒绝；另用独立练习库验证写入条件",
+              "evidence": "保留执行命令与原始输出，故意改变一条规则，说明哪项检查发现了变化",
+              "reflection": "如果把外部组件全部替换成模拟实现，组件之间的真实约定由谁检查？",
+              "id": "B41",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B40"
+              ]
+            },
+            {
+              "title": "验证前端关键路径",
+              "concepts": [
+                "组件测试",
+                "用户操作",
+                "可访问性"
+              ],
+              "practice": "测试表单错误、加载重试和键盘选择；执行一条完整预约流程",
+              "evidence": "关键路径检查单及自动化用例，避免只断言内部变量",
+              "reflection": "测试是否仍允许用户看到错误结果？",
+              "id": "B42",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B41"
+              ]
+            },
+            {
+              "title": "用测量选择一次性能优化",
+              "concepts": [
+                "索引",
+                "执行计划",
+                "延迟",
+                "样本"
+              ],
+              "practice": "扩充虚构预约数据，对一个查询测量并添加合适索引",
+              "evidence": "相同条件下前后对照，说明读写和存储代价",
+              "reflection": "数据量很小时的结果能代表真实瓶颈吗？",
+              "id": "B43",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B42"
+              ]
+            },
+            {
+              "title": "审查配置、依赖和恢复能力",
+              "concepts": [
+                "配置分离",
+                "依赖锁定",
+                "备份恢复"
+              ],
+              "practice": "检查密钥位置、构建依赖和日志；在练习库完成备份恢复",
+              "evidence": "审查记录与恢复后核对，不在真实数据上试验破坏性操作",
+              "reflection": "有备份文件为什么不等于能恢复服务？",
+              "id": "B44",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B43"
+              ]
+            }
+          ],
+          "id": "BU11",
+          "order": 11,
+          "prerequisite": "通过 BU10 的单元验收",
+          "topicTitle": "测试、性能与恢复"
+        },
+        {
+          "title": "交付之后，系统才开始接受检验",
+          "question": "如何让别人部署、观察并安全地更新系统？",
+          "output": "R11：可复现交付与独立变式",
+          "gate": "新环境可按文档部署并执行验收，回退后仍能解释数据兼容性；完成规则变更答辩。",
+          "lessons": [
+            {
+              "title": "把开发工程变成发布产物",
+              "concepts": [
+                "构建",
+                "静态文件",
+                "服务配置",
+                "环境变量"
+              ],
+              "practice": "分别构建 Vue 和后端，写启动、健康检查和停止说明",
+              "evidence": "可复现构建记录、配置样例和发布目录，不包含真实凭证",
+              "reflection": "开发服务器和生产部署承担的职责有何不同？",
+              "id": "B45",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B44"
+              ]
+            },
+            {
+              "title": "用检查清单完成一次部署",
+              "concepts": [
+                "反向代理",
+                "HTTPS",
+                "日志",
+                "健康检查"
+              ],
+              "practice": "在练习环境接通页面与接口，验证资源路径与跨页刷新",
+              "evidence": "部署记录及一条真实预约链路，健康检查可区分前后端",
+              "reflection": "页面能打开为什么不代表后端服务正常？",
+              "id": "B46",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B45"
+              ]
+            },
+            {
+              "title": "演练升级与回退",
+              "concepts": [
+                "版本标识",
+                "数据库迁移",
+                "兼容性",
+                "回滚"
+              ],
+              "practice": "发布一次新增可选字段的版本，失败后回退并核对旧数据",
+              "evidence": "版本与迁移记录，说明哪些更改不可直接回退",
+              "reflection": "回退程序版本为何不应自动删除新数据？",
+              "id": "B47",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B46"
+              ]
+            },
+            {
+              "title": "独立实现一条新规则并答辩",
+              "concepts": [
+                "需求变更",
+                "影响分析",
+                "回归",
+                "交接"
+              ],
+              "practice": "独立新增“每人每日最多两次预约”，贯穿前端、服务、数据与测试",
+              "evidence": "变更说明、测试证据、交付包，能现场解释失败案例",
+              "reflection": "你能在不用 AI 生成新代码时定位一个回归错误吗？",
+              "id": "B48",
+              "minutes": 90,
+              "status": "outline",
+              "dependsOn": [
+                "B47"
+              ]
+            }
+          ],
+          "id": "BU12",
+          "order": 12,
+          "prerequisite": "通过 BU11 的单元验收",
+          "topicTitle": "构建、部署与迭代"
+        }
+      ],
+      "excluded": [
+        "微服务与 Kubernetes",
+        "支付模块",
+        "高并发架构竞赛",
+        "Python、微调与强化学习"
+      ],
+      "bridge": "学完后可将产品实验室的活动助手迁入同一工程方法；AI 调用作为服务端适配器扩展，必须另做数据、成本和权限评测。",
+      "lessonCount": 48,
+      "totalHours": 108.0,
+      "chapters": [
+        {
+          "id": "engineering-chapter-1",
+          "title": "开发环境与工程起步",
+          "modules": [
+            "BU01"
+          ]
+        },
+        {
+          "id": "engineering-chapter-2",
+          "title": "Web 前端基础",
+          "modules": [
+            "BU02",
+            "BU03",
+            "BU04"
+          ]
+        },
+        {
+          "id": "engineering-chapter-3",
+          "title": "Java 核心技术",
+          "modules": [
+            "BU05",
+            "BU06"
+          ]
+        },
+        {
+          "id": "engineering-chapter-4",
+          "title": "数据库与持久化",
+          "modules": [
+            "BU07"
+          ]
+        },
+        {
+          "id": "engineering-chapter-5",
+          "title": "Spring Boot 接口开发",
+          "modules": [
+            "BU08"
+          ]
+        },
+        {
+          "id": "engineering-chapter-6",
+          "title": "Vue 前端工程",
+          "modules": [
+            "BU09"
+          ]
+        },
+        {
+          "id": "engineering-chapter-7",
+          "title": "全栈联调与工程质量",
+          "modules": [
+            "BU10",
+            "BU11"
+          ]
+        },
+        {
+          "id": "engineering-chapter-8",
+          "title": "部署与产品交付",
+          "modules": [
+            "BU12"
+          ]
+        }
+      ]
+    }
+  }
+}
