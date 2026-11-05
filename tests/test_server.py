@@ -15,12 +15,12 @@ class DeployTests(unittest.TestCase):
     def test_assets(self):
         server.prepare()
         archive = server.ROOT / 'course-assets.tar.gz'
-        expected = (server.ROOT / 'course-assets.sha256').read_text().split()[0]
+        expected = (server.ROOT / 'course-assets.sha256').read_text(encoding='utf-8').split()[0]
         self.assertEqual(hashlib.sha256(archive.read_bytes()).hexdigest(), expected)
         server.prepare()
-        catalog = json.loads((server.PUBLIC / 'engineering/catalog.json').read_text())
+        catalog = json.loads((server.PUBLIC / 'engineering/catalog.json').read_text(encoding='utf-8'))
         self.assertEqual(len(catalog['lessons']), 1063)
-        tasks = json.loads((server.PUBLIC / 'academy/project-homework.json').read_text())
+        tasks = json.loads((server.PUBLIC / 'academy/project-homework.json').read_text(encoding='utf-8'))
         self.assertEqual(len(tasks), 1111)
         for task in tasks.values():
             self.assertTrue((server.PUBLIC / task['download']).is_file())

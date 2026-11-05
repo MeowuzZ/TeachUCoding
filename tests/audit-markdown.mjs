@@ -33,6 +33,7 @@ for(const file of fs.readdirSync('public/curriculum').filter(f=>f.endsWith('.md'
 inspect('project-guide',fs.readFileSync('public/engineering/project-guide.md','utf8'));
 const sample=marked.parse('## 标题\n\n**重点**：说明\n\n- 一项\n- 二项\n\n[资料](https://example.com)\n\n```html\n<strong>示例源码</strong>\n```');
 for(const expected of ['<h2>','<strong>重点</strong>','<ul>','<li>','<a href="https://example.com">','<pre><code','&lt;strong&gt;'])assert(sample.includes(expected),expected);
+fs.mkdirSync('qa/markdown',{recursive:true});
 fs.writeFileSync('qa/markdown/逐节渲染核查.json',JSON.stringify({checked:checked.length,issues,lessons:checked},null,2));
 console.log(JSON.stringify({checked:checked.length,issues:issues.length,examples:issues.slice(0,8)},null,2));
 assert.equal(issues.length,0,'See qa/markdown/逐节渲染核查.json');

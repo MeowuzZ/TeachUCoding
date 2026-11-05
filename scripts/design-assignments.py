@@ -27,7 +27,7 @@ recipes=[
 ('苏格拉底问答','设计五个由浅入深的问题，用追问检验理解','问答链与参考答案','至少一个问题要求解释原因而不是复述定义'),
 ('可视化故事板','用六格呈现本节案例的触发、操作、变化与结果','六格故事板及文字标注','必须包含一次失败和恢复过程'),
 ('学习实验日志','提出一个关于本节的可检验假设，设计并完成一次小实验','假设、过程、观察与修订日志','原始观察与个人解释分开记录')]
-cat=json.loads((p/'engineering/catalog.json').read_text()); teaching=json.loads((p/'engineering/section-learning.json').read_text()); method=json.loads((root/'course-data.json').read_text())
+cat=json.loads((p/'engineering/catalog.json').read_text(encoding='utf-8')); teaching=json.loads((p/'engineering/section-learning.json').read_text(encoding='utf-8')); method=json.loads((root/'course-data.json').read_text(encoding='utf-8'))
 supp=lambda l:bool(re.match(r'^(作业|AI助学|助学)$',re.sub(r'^\d+(?:\.\d+)*\s*[.、:]?\s*','',l['title'].replace('\\','')).replace(' ','')))
 byid={l['id']:l for l in cat['lessons']}; output={}; audit=[]; chapters=[]; used={}
 preferences=[('安装|环境|配置|部署', [15,7,14,9]),('错误|异常|调试|报错',[2,14,4,17]),('测试|校验|安全|权限',[4,9,5,11]),('数据|数据库|SQL|对象|类型',[19,12,1,4]),('流程|请求|网络|线程|异步',[7,1,0,22]),('样式|布局|CSS|界面|原型',[10,3,22,11]),('需求|访谈|用户|问题',[16,8,18,23]),('AI|模型|提示|检索',[17,5,3,8]),('函数|方法|循环|变量|语法',[1,17,11,10]),('版本|Git|交付|迁移',[13,20,15,14])]
@@ -45,7 +45,7 @@ def build(course,l,chapter,index,context,task):
 for ch in cat['chapters']:
  lessons=[byid[i] for i in ch['lessons'] if not supp(byid[i])]
  for n,l in enumerate(lessons):
-  f=p/'engineering'/ (l['id']+'.json');body=json.loads(f.read_text()) if f.exists() else {};t=teaching.get(l['id'],{});context=t.get('focus') or re.sub('<[^>]+>','',body.get('body',''))[:180]
+  f=p/'engineering'/ (l['id']+'.json');body=json.loads(f.read_text(encoding='utf-8')) if f.exists() else {};t=teaching.get(l['id'],{});context=t.get('focus') or re.sub('<[^>]+>','',body.get('body',''))[:180]
   a=build('engineering',l,ch['title'],n+ch.get('order',0),context,t.get('task','阅读本节示例并解释输入与输出'));output[a['id']]=a
   audit.append(dict(course='engineering',id=l['id'],title=l['title'],bodyPresent=bool(body.get('body')),teachingPresent=bool(t),assignmentType=a['type']))
  chapters.append(dict(course='engineering',id=ch['id'],title=ch['title'],task='整合本章各节成果，选择同一个案例串联知识；提交章节作品、依赖关系图和验收记录。',lessonIds=[l['id'] for l in lessons],checks=['逐节列出成果位置','至少演示一条正常路径与一条失败路径','记录一个跨小节问题及解决过程']))
@@ -54,14 +54,14 @@ for n,l in enumerate(method['lessons']):
 for s in method['stages']:
  chapters.append(dict(course='method',id=str(s['id']),title=s['title'],task='用本阶段各节成果交付：'+s['output'],lessonIds=[l['id'] for l in method['lessons'] if l['stage']==s['id']],checks=['列出各节成果与阶段目标的对应关系','展示真实结果并标出未完成部分','完成一次复测并保留证据']))
 result=dict(types=[dict(name=r[0],action=r[1],deliverable=r[2],check=r[3]) for r in recipes],lessons=output,chapters=chapters)
-(p/'academy/assignments.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
+(p/'academy/assignments.json').write_text(json.dumps(result,ensure_ascii=False,indent=2), encoding='utf-8')
 report=dict(lessonCount=len(audit),chapterCount=len(chapters),typeCount=len(recipes),missingBody=[a for a in audit if not a['bodyPresent']],missingTeaching=[a for a in audit if not a['teachingPresent']],typeDistribution=dict(collections.Counter(a['assignmentType'] for a in audit)),lessons=audit)
-(root/'curriculum/作业覆盖核查.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
+(root/'curriculum/作业覆盖核查.json').write_text(json.dumps(report,ensure_ascii=False,indent=2), encoding='utf-8')
 lines=['# 全课程差异化作业设计','',f'覆盖 {len(chapters)} 个章节/阶段、{len(audit)} 个正式小节，使用 {len(recipes)} 种作业形式。','核查为正文存在性、原有练习与覆盖完整性检查；专业准确性仍需教师逐项复核。','']
 for ch in chapters:
  lines += ['## '+ch['title'],'',ch['task'],'']
  for lid in ch['lessonIds']:
   a=output[ch['course']+':'+lid];lines += ['### '+a['title'],'',a['task'],'']+['- '+x for x in a['requirements']]+['','验收：'+'；'.join(a['checks']),'']
-(root/'curriculum/全课程差异化作业设计.md').write_text('\n'.join(lines))
+(root/'curriculum/全课程差异化作业设计.md').write_text('\n'.join(lines), encoding='utf-8')
 assert len(output)==len(audit) and len(set(a['type'] for a in output.values()))>=20
 print(json.dumps({k:v for k,v in report.items() if k!='lessons'},ensure_ascii=False,indent=2))

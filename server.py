@@ -25,7 +25,7 @@ MAX_BODY = 8_000_000
 def prepare():
     """Expand versioned teaching assets; reject paths outside the public directory."""
     archive = ROOT / 'course-assets.tar.gz'
-    expected = (ROOT / 'course-assets.sha256').read_text().split()[0]
+    expected = (ROOT / 'course-assets.sha256').read_text(encoding='utf-8').split()[0]
     if not archive.exists() or hashlib.sha256(archive.read_bytes()).hexdigest() != expected:
         parts = sorted((ROOT / 'assets').glob('course-assets.tar.gz.part*'))
         raw = b''.join(part.read_bytes() for part in parts)
@@ -36,7 +36,7 @@ def prepare():
         temporary.replace(archive)
     signature = expected
     marker = PUBLIC / '.assets-version'
-    if marker.exists() and marker.read_text() == signature:
+    if marker.exists() and marker.read_text(encoding='utf-8') == signature:
         return
     with tarfile.open(archive, 'r:gz') as bundle:
         for member in bundle.getmembers():
@@ -44,7 +44,7 @@ def prepare():
             if not target.is_relative_to(PUBLIC.resolve()) or member.issym() or member.islnk() or not (member.isfile() or member.isdir()):
                 raise ValueError('Unsafe asset archive entry')
         bundle.extractall(PUBLIC)
-    marker.write_text(signature)
+    marker.write_text(signature, encoding='utf-8')
 
 
 @contextmanager

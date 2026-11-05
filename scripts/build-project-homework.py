@@ -2,7 +2,7 @@
 import json,re,zipfile,collections
 from pathlib import Path
 root=Path(__file__).resolve().parents[1];p=root/'public';templates=root/'project-templates';out=p/'homework';out.mkdir(exist_ok=True)
-data=json.loads((p/'academy/assignments.json').read_text());cat=json.loads((p/'engineering/catalog.json').read_text());byid={l['id']:l for l in cat['lessons']};teaching=json.loads((p/'engineering/section-learning.json').read_text());method=json.loads((root/'course-data.json').read_text());methods={l['id']:l for l in method['lessons']}
+data=json.loads((p/'academy/assignments.json').read_text(encoding='utf-8'));cat=json.loads((p/'engineering/catalog.json').read_text(encoding='utf-8'));byid={l['id']:l for l in cat['lessons']};teaching=json.loads((p/'engineering/section-learning.json').read_text(encoding='utf-8'));method=json.loads((root/'course-data.json').read_text(encoding='utf-8'));methods={l['id']:l for l in method['lessons']}
 scenarios=[
 ('library','社区共享书屋','图书借阅从登记、借出到归还；逾期与库存为扩展模块',['文学','技术','儿童'],['待借出','借阅中','已归还'],'借阅数量','登记共享图书','借阅记录与归还流程','预约排队与逾期提醒'),
 ('budget','合租家庭账本','室友登记生活支出，核对账单并完成结算',['餐饮','交通','水电'],['待核对','已确认','已结算'],'金额（分）','登记生活支出','分类统计与核对','按成员分摊与月度预算'),
@@ -26,12 +26,12 @@ for index,a in enumerate(data['lessons'].values()):
  config_text=json.dumps(config,ensure_ascii=False,indent=2)
  files={'scenario.json':config_text}
  if stack=='web':
-  files.update({f:(templates/f).read_text() for f in ['index.html','app.js','style.css']});files['scenario.js']='window.PROJECT_CONFIG = '+config_text+';\n';files['index.html']=files['index.html'].replace('<script src="app.js"','<script src="scenario.js"></script><script src="app.js"')
+  files.update({f:(templates/f).read_text(encoding='utf-8') for f in ['index.html','app.js','style.css']});files['scenario.js']='window.PROJECT_CONFIG = '+config_text+';\n';files['index.html']=files['index.html'].replace('<script src="app.js"','<script src="scenario.js"></script><script src="app.js"')
   run='直接用浏览器打开 index.html。此版本使用 localStorage；若浏览器限制 file:// 存储，请用编辑器的本地静态服务器打开。';main='app.js'
  elif stack=='python':
-  files.update({f:(templates/f).read_text() for f in ['index.html','app.js','style.css','service.py','test_service.py']});run='需要 Python 3.10+。在本目录运行 python3 service.py，然后打开 http://127.0.0.1:8088 。测试：python3 -m unittest -v test_service.py。Windows 可将 python3 替换为 py -3。';main='service.py'
+  files.update({f:(templates/f).read_text(encoding='utf-8') for f in ['index.html','app.js','style.css','service.py','test_service.py']});run='需要 Python 3.10+。在本目录运行 python3 service.py，然后打开 http://127.0.0.1:8088 。测试：python3 -m unittest -v test_service.py。Windows 可将 python3 替换为 py -3。';main='service.py'
  else:
-  files['Main.java']=(templates/'Main.java').read_text();files['scenario.properties']='title='+project+'\ncategories='+','.join(categories)+'\nstates='+','.join(states)+'\n';run='需要 JDK 17+。在本目录执行 javac -encoding UTF-8 Main.java，再执行 java Main。自动检查：java Main --test。命令示例：add 示例|'+categories[0]+'|2|模拟数据，然后执行 list、next 1、stats、export。';main='Main.java'
+  files['Main.java']=(templates/'Main.java').read_text(encoding='utf-8');files['scenario.properties']='title='+project+'\ncategories='+','.join(categories)+'\nstates='+','.join(states)+'\n';run='需要 JDK 17+。在本目录执行 javac -encoding UTF-8 Main.java，再执行 java Main。自动检查：java Main --test。命令示例：add 示例|'+categories[0]+'|2|模拟数据，然后执行 list、next 1、stats、export。';main='Main.java'
  # Select the actual layer taught by this lesson for beginner blanks.
  if stack=='web' and re.search(r'HTML|标签|表单|表格|语义',chapter+' '+title,re.I):
   main='index.html'
@@ -55,7 +55,7 @@ for index,a in enumerate(data['lessons'].values()):
  bodyfile=p/'engineering'/(lid+'.json')
  # Preserve real lesson specimens separately rather than presenting them as integrated functionality.
  if bodyfile.exists():
-  blocks=json.loads(bodyfile.read_text()).get('blocks',[])
+  blocks=json.loads(bodyfile.read_text(encoding='utf-8')).get('blocks',[])
   excerpts='\n\n'.join('```'+str(b.get('language','text'))+'\n'+str(b.get('code',''))+'\n```' for b in blocks[:3])
  else:excerpts=learning.get('body','')+'\n\n'+learning.get('practice','')
  focus=a['focus'];req='\n'.join('- '+r for r in a['requirements'][2:])
@@ -66,10 +66,10 @@ for index,a in enumerate(data['lessons'].values()):
  with zipfile.ZipFile(out/(slug+'.zip'),'w',zipfile.ZIP_DEFLATED) as z:
   for path,content in starter.items():z.writestr(path,content)
  answer={'title':project+' · 标准参考实现','scope':'覆盖项目基础切片及本次填空；扩展路线需另行实现。','explanations':[dict(token=b['token'],answer=b['answer'],location=main+':'+str(b['line'])) for b in blanks],'files':[dict(path=path,content=text) for path,text in files.items()]}
- (out/(slug+'-answer.json')).write_text(json.dumps(answer,ensure_ascii=False))
+ (out/(slug+'-answer.json')).write_text(json.dumps(answer,ensure_ascii=False), encoding='utf-8')
  manifest[a['id']]=dict(project=project,scenario=sid,stack=stack,mode=foundation,focus=focus,milestones=milestones,title=title,type=a['type'],download='homework/'+slug+'.zip',answer='homework/'+slug+'-answer.json',requirements=['下载并解压作业包，阅读 README 与本节教材示例。','补齐三个关键词，保留大部分已提供的代码。','在本地运行项目，完成验收清单。',f'围绕项目提交「{a["type"]}」，说明本节知识的实际用途。'],checks=['基础项目可启动，填空职责解释正确','合法与非法输入、状态终点和保存恢复均有验证证据','本节证据与代码行为一致'],run=run)
  counts[stack]+=1
-(p/'academy/project-homework.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
-(root/'curriculum/项目作业交付说明.md').write_text('# 本地项目作业\n\n'+f'覆盖 {len(manifest)} 节，{len(scenarios)} 类生活场景，24 种项目证据形式。\n\n'+ '\n'.join('- '+s[1]+'：'+s[2] for s in scenarios)+'\n\n基础包采用 Web 本地存储、Java 命令行业务引擎或 Python/SQLite 服务三种实现。框架课程可在基础切片上迁移实现，不将标准库实现称为 Spring/Vue 完整系统。标准答案覆盖基础切片；大型项目扩展需按各章知识继续实现。\n')
+(p/'academy/project-homework.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2), encoding='utf-8')
+(root/'curriculum/项目作业交付说明.md').write_text('# 本地项目作业\n\n'+f'覆盖 {len(manifest)} 节，{len(scenarios)} 类生活场景，24 种项目证据形式。\n\n'+ '\n'.join('- '+s[1]+'：'+s[2] for s in scenarios)+'\n\n基础包采用 Web 本地存储、Java 命令行业务引擎或 Python/SQLite 服务三种实现。框架课程可在基础切片上迁移实现，不将标准库实现称为 Spring/Vue 完整系统。标准答案覆盖基础切片；大型项目扩展需按各章知识继续实现。\n', encoding='utf-8')
 assert len(manifest)==1111
 print('Built',len(manifest),'packages;',dict(counts))

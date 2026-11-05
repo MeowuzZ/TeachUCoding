@@ -13,7 +13,7 @@ with tarfile.open(archive, 'w:gz', compresslevel=9) as bundle:
         for file in files:
             if file.is_file():
                 bundle.add(file, arcname=str(file.relative_to(root / 'public')))
-(root / 'course-assets.sha256').write_text(hashlib.sha256(archive.read_bytes()).hexdigest() + '  course-assets.tar.gz\n')
+(root / 'course-assets.sha256').write_text(hashlib.sha256(archive.read_bytes()).hexdigest() + '  course-assets.tar.gz\n', encoding='utf-8')
 print('Updated course-assets.tar.gz and course-assets.sha256')
 
 parts = root / 'assets'

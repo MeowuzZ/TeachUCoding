@@ -1,5 +1,6 @@
 """本地教学服务：SQLite 持久化、业务状态流转、筛选、统计与 CSV 导出。"""
 import csv
+from contextlib import contextmanager
 import io
 import json
 import sqlite3
@@ -11,10 +12,18 @@ ROOT = Path(__file__).resolve().parent
 CONFIG = json.loads((ROOT / 'scenario.json').read_text(encoding='utf-8'))
 DB = ROOT / 'records.sqlite3'
 
+@contextmanager
 def connect():
     db = sqlite3.connect(DB)
     db.row_factory = sqlite3.Row
-    return db
+    try:
+        yield db
+        db.commit()
+    except Exception:
+        db.rollback()
+        raise
+    finally:
+        db.close()
 
 def initialize():
     with connect() as db:
